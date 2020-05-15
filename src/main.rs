@@ -26,7 +26,7 @@ fn main() -> Result<()> {
     let Opt::CherryPickAndBundle { path } = Opt::from_args();
 
     let path = match path {
-        Some(path) => path,
+        Some(path) => path.canonicalize()?,
         None => env::current_dir()?,
     };
 
