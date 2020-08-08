@@ -21,6 +21,7 @@ pub enum SelectItemMod {
 
 pub fn bundle(
     crate_name: &str,
+    indent_spaces: usize,
     path: &Path,
     mut select_item_mod: impl FnMut(&str) -> SelectItemMod,
     mut select_item_use: impl FnMut(&str) -> bool,
@@ -28,10 +29,12 @@ pub fn bundle(
     let content = do_bundle(
         false,
         0,
+        indent_spaces,
         &path.join("src").join("lib.rs"),
         &mut |_, item_mod| select_item_mod(&item_mod.ident.to_string()),
         &mut |content, item_use| select_item_use(&spanned_str(content, item_use.span())),
     )?;
+    let content = insert_indents(&content, indent_spaces);
 
     Ok(format!("pub mod {} {{\n{}}}\n", crate_name, content))
 }
@@ -39,6 +42,7 @@ pub fn bundle(
 fn do_bundle(
     all_selected: bool,
     depth: usize,
+    indent_spaces: usize,
     file_path: &Path,
     select_item_mod: &mut impl FnMut(&str, &syn::ItemMod) -> SelectItemMod,
     select_item_use: &mut impl FnMut(&str, &syn::ItemUse) -> bool,
@@ -89,10 +93,12 @@ fn do_bundle(
             let content = do_bundle(
                 all_selected,
                 depth + 1,
+                indent_spaces,
                 &file_path,
                 select_item_mod,
                 select_item_use,
             )?;
+            let content = insert_indents(&content, indent_spaces);
             span_and_new_strs.push((semi_span, Cow::Owned(format!(" {{\n{}}}", content))));
         } else {
             span_and_new_strs.push((item_mod.span(), Cow::Borrowed("")));
@@ -292,5 +298,15 @@ fn spanned_str(content: &str, span: Span) -> String {
         acc.push_str(&end_line[..span.end().column]);
     }
 
+    acc
+}
+
+fn insert_indents(content: &str, indent_spaces: usize) -> String {
+    let mut acc = String::new();
+    for line in content.lines() {
+        acc.push_str(&str::repeat(" ", indent_spaces));
+        acc.push_str(line);
+        acc.push('\n');
+    }
     acc
 }

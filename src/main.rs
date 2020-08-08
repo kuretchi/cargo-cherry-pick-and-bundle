@@ -19,11 +19,21 @@ enum Opt {
     CherryPickAndBundle {
         #[structopt(long, name = "PATH", help = "Path to crate")]
         path: Option<PathBuf>,
+        #[structopt(
+            long,
+            name = "NUM",
+            help = "Number of spaces for indentation",
+            default_value = "0"
+        )]
+        indent_spaces: usize,
     },
 }
 
 fn main() -> Result<()> {
-    let Opt::CherryPickAndBundle { path } = Opt::from_args();
+    let Opt::CherryPickAndBundle {
+        path,
+        indent_spaces,
+    } = Opt::from_args();
 
     let path = match path {
         Some(path) => path.canonicalize()?,
@@ -44,6 +54,7 @@ fn main() -> Result<()> {
 
     let output = bundle(
         &crate_name,
+        indent_spaces,
         &path,
         |item_mod_ident| loop {
             eprint!(
