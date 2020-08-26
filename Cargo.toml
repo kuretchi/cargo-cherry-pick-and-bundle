@@ -4,6 +4,9 @@ version = "0.0.0"
 authors = ["kuretchi"]
 edition = "2018"
 license = "MIT OR Apache-2.0"
+description = "Packs only necessary modules of the crate into a single file semi-automatically."
+repository = "https://github.com/kuretchi/cargo-cherry-pick-and-bundle"
+readme = "README.md"
 
 [dependencies]
 anyhow = "1.0.32"
