@@ -3,6 +3,7 @@ name = "cargo-cherry-pick-and-bundle"
 version = "0.0.0"
 authors = ["kuretchi"]
 edition = "2018"
+license = "MIT OR Apache-2.0"
 
 [dependencies]
 anyhow = "1.0.32"
