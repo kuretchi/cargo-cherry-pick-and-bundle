@@ -28,6 +28,12 @@ only necessary parts, perform the following processing, and then print it to std
 * Removing documentation comments
 * Replacing the keyword `crate` in paths with `super`s
 
+## Related tools
+
+* [shino16/cargo-auto-bundle](https://github.com/shino16/cargo-auto-bundle)
+* [qryxip/cargo-equip](https://github.com/qryxip/cargo-equip)
+* [hatoo/cargo-snippet](https://github.com/hatoo/cargo-snippet)
+
 ## License
 
 [MIT License](./LICENSE-MIT) or [Apache License 2.0](./LICENSE-APACHE)

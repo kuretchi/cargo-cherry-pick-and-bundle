@@ -26,6 +26,12 @@ cargo cherry-pick-and-bundle >output.rs
 * ドキュメンテーションコメントの削除
 * パス中の `crate` を `super` で置き換える
 
+## 関連ツール
+
+* [shino16/cargo-auto-bundle](https://github.com/shino16/cargo-auto-bundle)
+* [qryxip/cargo-equip](https://github.com/qryxip/cargo-equip)
+* [hatoo/cargo-snippet](https://github.com/hatoo/cargo-snippet)
+
 ## ライセンス
 
 [MIT License](./LICENSE-MIT) or [Apache License 2.0](./LICENSE-APACHE)
