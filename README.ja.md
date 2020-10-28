@@ -1,5 +1,8 @@
 [English](./README.md)
 
+*このレポジトリはアーカイブされました．*
+*[cargo-simple-bundler](https://github.com/kuretchi/cargo-simple-bundler) をおすすめします．*
+
 # cargo-cherry-pick-and-bundle
 
 クレートの必要なモジュールだけを一つのファイルにまとめる作業を半自動化します．

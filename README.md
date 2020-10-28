@@ -1,5 +1,8 @@
 [日本語](./README.ja.md)
 
+*This repository has been archived.*
+*I recommend [cargo-simple-bundler](https://github.com/kuretchi/cargo-simple-bundler).*
+
 # cargo-cherry-pick-and-bundle
 
 Packs only necessary modules of the crate into a single file semi-automatically.
